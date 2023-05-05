@@ -2,6 +2,10 @@
 using Catalog.API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Catalog.API.Controllers
 {
@@ -22,7 +26,7 @@ namespace Catalog.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("guid:id")]
+        [HttpGet("id:guid")]
         public async Task<IActionResult> Get([FromBody] Guid id)
         {
             Product result = await _producRepository.GetProduct(id);
