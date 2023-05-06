@@ -51,8 +51,7 @@ namespace Catalog.API.Controllers
             return Ok();
         }
 
-        [Route("[action]/{category}")]
-        [HttpPost]
+        [HttpPost("{category}")]
         public async Task<IActionResult> SearchNameCategory([FromBody] string category)
         {
             IEnumerable<Product> result = await _producRepository.GetProductByCategory(category);
@@ -63,8 +62,7 @@ namespace Catalog.API.Controllers
             return Ok(result);
         }
 
-        [Route("[action]/{name}")]
-        [HttpPost]
+        [HttpPost("{name}")]
         public async Task<IActionResult> SearchName([FromBody] string name)
         {
             IEnumerable<Product> result = await _producRepository.GetProductsByName(name);

@@ -16,7 +16,7 @@ namespace Bascket.API.Controllers
             _bascketRepository = bascketRepository ?? throw new ArgumentException(nameof(bascketRepository));
         }
 
-        [HttpGet]
+        [HttpGet("{userName}")]
         public async Task<IActionResult> Get([FromBody] string userName)
         {
             ShoppingCart bascket = await _bascketRepository.GetBascket(userName);
@@ -30,7 +30,7 @@ namespace Bascket.API.Controllers
             return Ok(await _bascketRepository.UpdateBascket(shoppingCart));
         }
 
-        [HttpDelete]
+        [HttpDelete("{userName}")]
         public async Task<IActionResult> Delete([FromBody] string userName)
         {
             await _bascketRepository.DeleteBascket(userName);
