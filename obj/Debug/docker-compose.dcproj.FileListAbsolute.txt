@@ -21,3 +21,17 @@ C:\Users\User\Desktop\Microservices\bin\Debug\Catalog.API.pdb
 C:\Users\User\Desktop\Microservices\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Users\User\Desktop\Microservices\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\Microservices\obj\Debug\docker-compose.dcproj.CopyComplete
+C:\Users\User\Desktop\Microservices\bin\Debug\Bascket.API.deps.json
+C:\Users\User\Desktop\Microservices\bin\Debug\Bascket.API.runtimeconfig.json
+C:\Users\User\Desktop\Microservices\bin\Debug\Bascket.API.exe
+C:\Users\User\Desktop\Microservices\bin\Debug\Bascket.API.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\StackExchange.Redis.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Pipelines.Sockets.Unofficial.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\System.Diagnostics.PerformanceCounter.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Bascket.API.pdb

@@ -4,11 +4,21 @@ services:
   catalogdb:
     image: mongo
 
+  bascketdb:
+    image: redis:alpine
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
       context: .
       dockerfile: Catalog.API/Dockerfile
 
+  bascket.api:
+    image: ${DOCKER_REGISTRY-}bascketapi
+    build:
+      context: .
+      dockerfile: Bascket.API/Dockerfile
+
 volumes:
   mongo_data:
+
