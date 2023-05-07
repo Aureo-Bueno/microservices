@@ -7,6 +7,12 @@ services:
   bascketdb:
     image: redis:alpine
 
+  discountdb:
+    image: postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
@@ -19,6 +25,14 @@ services:
       context: .
       dockerfile: Bascket.API/Dockerfile
 
+  discount.api:
+    image: ${DOCKER_REGISTRY-}discountapi
+    build:
+      context: .
+      dockerfile: Discount.API/Dockerfile
+
 volumes:
   mongo_data:
+  postgres_data:
+  pgadmin_data:
 

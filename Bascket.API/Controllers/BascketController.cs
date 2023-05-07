@@ -1,4 +1,5 @@
 ﻿using Bascket.API.Entities;
+using Bascket.API.GrpcServices;
 using Bascket.API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,11 @@ namespace Bascket.API.Controllers
     public class BascketController : ControllerBase
     {
         private readonly IBascketRepository _bascketRepository;
-        public BascketController(IBascketRepository bascketRepository)
+        private readonly DiscountGrpsService _discountGrpsService;
+        public BascketController(IBascketRepository bascketRepository, DiscountGrpsService discountGrpsService)
         {
             _bascketRepository = bascketRepository ?? throw new ArgumentException(nameof(bascketRepository));
+            _discountGrpsService = discountGrpsService;
         }
 
         [HttpGet("{userName}")]
@@ -27,6 +30,12 @@ namespace Bascket.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Update([FromBody] ShoppingCart shoppingCart)
         {
+            foreach (ShoppingCartItem item in shoppingCart.Items)
+            {
+                var coupon = await _discountGrpsService.GetDiscount(item.ProductName);
+                item.Price -= coupon.Amount;
+            }
+
             return Ok(await _bascketRepository.UpdateBascket(shoppingCart));
         }
 

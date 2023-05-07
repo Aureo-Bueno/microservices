@@ -35,3 +35,10 @@ C:\Users\User\Desktop\Microservices\bin\Debug\StackExchange.Redis.dll
 C:\Users\User\Desktop\Microservices\bin\Debug\Pipelines.Sockets.Unofficial.dll
 C:\Users\User\Desktop\Microservices\bin\Debug\System.Diagnostics.PerformanceCounter.dll
 C:\Users\User\Desktop\Microservices\bin\Debug\Bascket.API.pdb
+C:\Users\User\Desktop\Microservices\bin\Debug\Discount.API.deps.json
+C:\Users\User\Desktop\Microservices\bin\Debug\Discount.API.runtimeconfig.json
+C:\Users\User\Desktop\Microservices\bin\Debug\Discount.API.exe
+C:\Users\User\Desktop\Microservices\bin\Debug\Discount.API.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Npgsql.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Dapper.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Discount.API.pdb

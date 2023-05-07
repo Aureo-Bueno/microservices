@@ -1,4 +1,6 @@
+using Bascket.API.GrpcServices;
 using Bascket.API.Repositories;
+using Discount.Grpc.Service;
 using Microsoft.OpenApi.Models;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,9 @@ builder.Services.AddStackExchangeRedisCache(options =>
 );
 
 builder.Services.AddScoped<IBascketRepository, BascketRepository>();
+builder.Services.AddScoped<DiscountGrpsService>();
+
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(option => option.Address = new Uri(configuration["GrpcSettings:DiscountUrl"]));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerGen(options =>
 {
