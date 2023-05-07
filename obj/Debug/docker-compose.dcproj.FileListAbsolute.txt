@@ -42,3 +42,16 @@ C:\Users\User\Desktop\Microservices\bin\Debug\Discount.API.dll
 C:\Users\User\Desktop\Microservices\bin\Debug\Npgsql.dll
 C:\Users\User\Desktop\Microservices\bin\Debug\Dapper.dll
 C:\Users\User\Desktop\Microservices\bin\Debug\Discount.API.pdb
+C:\Users\User\Desktop\Microservices\bin\Debug\Discount.Grpc.deps.json
+C:\Users\User\Desktop\Microservices\bin\Debug\Discount.Grpc.runtimeconfig.json
+C:\Users\User\Desktop\Microservices\bin\Debug\Discount.Grpc.exe
+C:\Users\User\Desktop\Microservices\bin\Debug\Discount.Grpc.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Grpc.Net.ClientFactory.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Google.Protobuf.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Grpc.Core.Api.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\AutoMapper.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Grpc.AspNetCore.Server.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Grpc.Net.Client.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Grpc.Net.Common.dll
+C:\Users\User\Desktop\Microservices\bin\Debug\Discount.Grpc.pdb
