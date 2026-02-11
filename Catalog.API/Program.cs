@@ -1,6 +1,4 @@
-using Catalog.API.Data;
-using Catalog.API.Repositories;
-using Microsoft.OpenApi.Models;
+using Catalog.Infrastructure.Extensions;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +8,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo
+    options.SwaggerDoc("v1", new()
     {
         Version = "v1",
         Title = "Catalog API",
@@ -18,8 +16,7 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddScoped<ICatalogContext, CatalogContext>();
-builder.Services.AddScoped<IProducRepository, ProductRepository>();
+builder.Services.AddCatalogInfrastructure(builder.Configuration);
 
 WebApplication app = builder.Build();
 app.UseHttpLogging();
@@ -29,17 +26,17 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseSwagger(options =>
-{
-    options.SerializeAsV2 = true;
-});
+app.UseSwagger();
 
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "APISaudacao v1");
 });
 
-app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 app.UseRouting();
 
 app.UseAuthorization();

@@ -1,9 +1,6 @@
-﻿using Bascket.API.Entities;
-using Bascket.API.GrpcServices;
-using Bascket.API.Repositories;
-using Microsoft.AspNetCore.Http;
+﻿using Bascket.Application.Interfaces;
+using Bascket.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.StackExchangeRedis;
 
 namespace Bascket.API.Controllers
 {
@@ -12,15 +9,15 @@ namespace Bascket.API.Controllers
     public class BascketController : ControllerBase
     {
         private readonly IBascketRepository _bascketRepository;
-        private readonly DiscountGrpsService _discountGrpsService;
-        public BascketController(IBascketRepository bascketRepository, DiscountGrpsService discountGrpsService)
+        private readonly IDiscountService _discountService;
+        public BascketController(IBascketRepository bascketRepository, IDiscountService discountService)
         {
             _bascketRepository = bascketRepository ?? throw new ArgumentException(nameof(bascketRepository));
-            _discountGrpsService = discountGrpsService;
+            _discountService = discountService ?? throw new ArgumentException(nameof(discountService));
         }
 
         [HttpGet("{userName}")]
-        public async Task<IActionResult> Get([FromBody] string userName)
+        public async Task<IActionResult> Get([FromRoute] string userName)
         {
             ShoppingCart bascket = await _bascketRepository.GetBascket(userName);
 
@@ -32,7 +29,7 @@ namespace Bascket.API.Controllers
         {
             foreach (ShoppingCartItem item in shoppingCart.Items)
             {
-                var coupon = await _discountGrpsService.GetDiscount(item.ProductName);
+                var coupon = await _discountService.GetDiscount(item.ProductName);
                 item.Price -= coupon.Amount;
             }
 
@@ -40,7 +37,7 @@ namespace Bascket.API.Controllers
         }
 
         [HttpDelete("{userName}")]
-        public async Task<IActionResult> Delete([FromBody] string userName)
+        public async Task<IActionResult> Delete([FromRoute] string userName)
         {
             await _bascketRepository.DeleteBascket(userName);
             return Ok();

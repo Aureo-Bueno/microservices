@@ -1,12 +1,15 @@
 #See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY ["Catalog.API/Catalog.API.csproj", "Catalog.API/"]
+COPY ["Catalog.API/Catalog.Domain/Catalog.Domain.csproj", "Catalog.API/Catalog.Domain/"]
+COPY ["Catalog.API/Catalog.Application/Catalog.Application.csproj", "Catalog.API/Catalog.Application/"]
+COPY ["Catalog.API/Catalog.Infrastructure/Catalog.Infrastructure.csproj", "Catalog.API/Catalog.Infrastructure/"]
 RUN dotnet restore "Catalog.API/Catalog.API.csproj"
 COPY . .
 WORKDIR "/src/Catalog.API"

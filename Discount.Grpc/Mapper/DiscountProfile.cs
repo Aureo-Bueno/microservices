@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Discount.Grpc.Entities;
+using Discount.Grpc.Domain.Entities;
 using Discount.Grpc.Service;
 
 namespace Discount.Grpc.Mapper

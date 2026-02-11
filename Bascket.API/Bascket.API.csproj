@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -11,16 +11,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.49.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.5" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets"
+      Version="1.17.2" />
+    <PackageReference Include="Microsoft.OpenApi" Version="2.4.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\Discount.Grpc\Protos\Discount.proto" GrpcServices="Client">
-      <Link>Protos\Discount.proto</Link>
-    </Protobuf>
+    <Compile Remove="Bascket.Application\\**;Bascket.Domain\\**;Bascket.Infrastructure\\**" />
+    <EmbeddedResource Remove="Bascket.Application\\**;Bascket.Domain\\**;Bascket.Infrastructure\\**" />
+    <None Remove="Bascket.Application\\**;Bascket.Domain\\**;Bascket.Infrastructure\\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Bascket.Application\\Bascket.Application.csproj" />
+    <ProjectReference Include="Bascket.Domain\\Bascket.Domain.csproj" />
+    <ProjectReference Include="Bascket.Infrastructure\\Bascket.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

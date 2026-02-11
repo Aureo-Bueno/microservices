@@ -1,4 +1,4 @@
-using Discount.Grpc.Repositories;
+using Discount.Grpc.Infrastructure.Extensions;
 using Discount.Grpc.Services;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -7,7 +7,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
 
 // Add services to the container.
-builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
+builder.Services.AddDiscountInfrastructure(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddGrpc();
 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -11,7 +11,19 @@
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
     <PackageReference Include="Npgsql" Version="7.0.4" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Discount.API.Application\\**;Discount.API.Domain\\**;Discount.API.Infrastructure\\**" />
+    <EmbeddedResource Remove="Discount.API.Application\\**;Discount.API.Domain\\**;Discount.API.Infrastructure\\**" />
+    <None Remove="Discount.API.Application\\**;Discount.API.Domain\\**;Discount.API.Infrastructure\\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Discount.API.Application\\Discount.API.Application.csproj" />
+    <ProjectReference Include="Discount.API.Domain\\Discount.API.Domain.csproj" />
+    <ProjectReference Include="Discount.API.Infrastructure\\Discount.API.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

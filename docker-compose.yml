@@ -1,45 +1,113 @@
-version: '3.4'
-
 services:
   catalogdb:
     image: mongo
+    container_name: catalogdb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
 
   bascketdb:
     image: redis:alpine
+    container_name: bascketdb
+    restart: always
+    ports:
+      - "6379:6379"
 
   discountdb:
     image: postgres
+    container_name: discountdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=DiscountDb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
 
   pgadmin:
     image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@aureo.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    restart: always
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
       context: .
       dockerfile: Catalog.API/Dockerfile
+    container_name: catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"
+      - ASPNETCORE_HTTP_PORTS=8080
+    depends_on:
+      - catalogdb
+    ports:
+      - "8000:8080"
 
   bascket.api:
     image: ${DOCKER_REGISTRY-}bascketapi
     build:
       context: .
       dockerfile: Bascket.API/Dockerfile
+    container_name: bascket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=bascketdb:6379"
+      - "GrpcSettings:DiscountUrl=http://discount.grpc:8080"
+      - ASPNETCORE_HTTP_PORTS=8080
+    depends_on:
+      - bascketdb
+    ports:
+      - "8001:8080"
+    volumes:
+      - ${HOME}/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+      - ${HOME}/.aspnet/https:/root/.aspnet/https:ro
 
   discount.api:
     image: ${DOCKER_REGISTRY-}discountapi
     build:
       context: .
       dockerfile: Discount.API/Dockerfile
+    container_name: discount.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountFb;User Id=admin;Password=admin"
+      - ASPNETCORE_HTTP_PORTS=8080
+    depends_on:
+      - discountdb
+    ports:
+      - "8002:8080"
 
   discount.grpc:
     image: ${DOCKER_REGISTRY-}discountgrpc
     build:
       context: .
       dockerfile: Discount.Grpc/Dockerfile
+    container_name: discount.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountFb;User Id=admin;Password=admin"
+    depends_on:
+      - discountdb
+    ports:
+      - "8003:8080"
+    volumes:
+      - ${HOME}/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+      - ${HOME}/.aspnet/https:/root/.aspnet/https:ro
 
 volumes:
   mongo_data:
   postgres_data:
   pgadmin_data:
-
-

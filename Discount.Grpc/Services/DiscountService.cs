@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Discount.Grpc.Entities;
-using Discount.Grpc.Repositories;
+using Discount.Grpc.Application.Interfaces;
+using Discount.Grpc.Domain.Entities;
 using Discount.Grpc.Service;
 using Grpc.Core;
 

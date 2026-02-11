@@ -1,6 +1,5 @@
-﻿using Discount.API.Entities;
-using Discount.API.Repositories;
-using Microsoft.AspNetCore.Http;
+﻿using Discount.API.Application.Interfaces;
+using Discount.API.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Discount.API.Controllers
