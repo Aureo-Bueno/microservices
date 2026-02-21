@@ -2,8 +2,8 @@
 using Catalog.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Catalog.API.Controllers
-{
+namespace Catalog.API.Controllers;
+
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -68,4 +68,3 @@ namespace Catalog.API.Controllers
             return Ok(result);
         }
     }
-}
